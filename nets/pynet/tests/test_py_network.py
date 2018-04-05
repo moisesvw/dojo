@@ -17,11 +17,11 @@ class TestPyNetwork(object):
 
     def test_logistic_loss(self):
         l = Learn()
-        y = np.array([1, 1, 0, 1]).T
-        y_hat = np.array([0.95, 0.87, 0.2, 0.7]).T
+        y = np.array([1, 1, 0, 1, 0]).T
+        y_hat = np.array([0.95, 0.87, 0.2, 0.7, 0.5]).T
         
         loss_1 = l.logistic_loss(y=y[0], y_hat=y_hat[0])
         npt.assert_almost_equal(loss_1, 0.05129, decimal=5)
         losses = l.logistic_loss(y=y, y_hat=y_hat)
-        expected = np.array([0.05129, 0.13926, 0.22314, 0.35667]).T
+        expected = np.array([0.05129, 0.13926, 0.22314, 0.35667, 0.69315]).T
         npt.assert_almost_equal(losses, expected, decimal=5)
