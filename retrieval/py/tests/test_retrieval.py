@@ -14,8 +14,8 @@ class TestPyRetrieval(object):
         r = Retrieval()
         x = 9.0
         docs = np.array([5.0, 8.0, 9.2, 9.3, 9.9, 8.5, 13.0, 11.0, 8.9])
-        k3_neighbors = [x for (x, _) in r.k_nearset_neighbor(x, docs, k=3) ]
-        k6_neighbors = [x for (x, _) in r.k_nearset_neighbor(x, docs, k=6) ]
+        k3_neighbors = [x for (x, _) in r.k_nearest_neighbor(x, docs, k=3) ]
+        k6_neighbors = [x for (x, _) in r.k_nearest_neighbor(x, docs, k=6) ]
         assert([8.9, 9.2, 9.3] == k3_neighbors)
         assert([8.9, 9.2, 9.3, 8.5, 9.9, 8.0 ] == k6_neighbors)
 

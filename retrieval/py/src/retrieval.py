@@ -12,7 +12,7 @@ class Retrieval(object):
 
         return (nearest, nearest_distance)
 
-    def k_nearset_neighbor(self, x, docs, k=1, debug_steps=False):
+    def k_nearest_neighbor(self, x, docs, k=1, debug_steps=False):
         if debug_steps:
             steps = 1
 
