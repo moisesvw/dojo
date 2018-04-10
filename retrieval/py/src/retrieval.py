@@ -12,31 +12,46 @@ class Retrieval(object):
 
         return (nearest, nearest_distance)
 
-    def k_nearset_neighbor(self, x, docs, k=1, debug_steps=True):
+    def k_nearset_neighbor(self, x, docs, k=1, debug_steps=False):
         if debug_steps:
             steps = 1
-        nearests = [ (q, np.inf) for q in docs[:k] ]
 
-        for doc in docs:
+        k_neighbors = docs[:k]
+        k_distances = np.array([self.distance(x, d) for d in k_neighbors])
+        idx = np.argsort(k_distances)
+        k_neighbors = k_neighbors[idx] 
+        k_distances = k_distances[idx]
+
+        for i in range(k, docs.shape[0]):
             if debug_steps:
                 steps += 1
 
-            doc_distance = self.distance(x, doc)
+            distance = self.distance(x, docs[i])
 
-            for i in range(k):
-                if debug_steps:
-                    steps += 1
+            if distance < k_distances[-1]:
+                find_j = False
+                for j in reversed(range(1, k)):
+                    if distance > k_distances[j-1] and distance < k_distances[j]:
+                        find_j = True
+                        k_neighbors[j+1:k] = k_neighbors[j:k-1]
+                        k_distances[j+1:k] = k_distances[j:k-1]
+                        k_neighbors[j] = docs[i]
+                        k_distances[j] = distance
+                        break
 
-                i_distance = nearests[i][1]
-                if doc_distance < i_distance:
+                if not find_j:
                     if debug_steps:
                         steps += 1
-                    nearests.insert(i, (doc, doc_distance))
-                    nearests = nearests[:k]
-                    break
+                    j = 0
+                    k_neighbors[j+1:k] = k_neighbors[j:k-1]
+                    k_distances[j+1:k] = k_distances[j:k-1]
+                    k_neighbors[j] = docs[i]
+                    k_distances[j] = distance
 
-        print("Debugging steps", steps)
-        return nearests
+
+        if debug_steps:
+            print("Debugging steps", steps)
+        return zip(k_neighbors, k_distances)
 
     def distance(self, q1, q2):
         if None in [q1, q2]:
