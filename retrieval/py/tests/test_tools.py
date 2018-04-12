@@ -2,10 +2,10 @@ from src.tools import Tools
 import numpy.testing as npt
 import numpy as np
 
-vocab = ['a', 'able', 'accepted', 'always', 'and', 'annoyances', 'are', 'as', 'avoided.',
+vocab = ['a', 'able', 'accepted', 'always', 'and', 'annoyances', 'are', 'as', 'avoided',
          'be', 'beguiled', 'being', 'belongs', 'best', 'blame', 'blinded', 'bound', 'business',
          'but', 'by', 'cannot', 'cases', 'certain', 'charms', 'choice', 'circumstances', 'claims',
-         'demoralized', 'denounce', 'desire', 'dislike', 'distinguish.', 'do', 'duty', 'easy',
+         'demoralized', 'denounce', 'desire', 'dislike', 'distinguish', 'do', 'duty', 'easy',
          'ensue', 'equal', 'every', 'fail', 'foresee', 'free', 'frequently', 'from', 'greater',
          'hand', 'have', 'he', 'holds', 'hour', 'in', 'indignation', 'is', 'it', 'like', 'man',
          'matters', 'men', 'moment', 'nothing', 'obligations', 'occur','of', 'on', 'or', 'other',
@@ -32,3 +32,8 @@ class TestTools(object):
         t = Tools()
         idf_doc = t.idf(docs, vocab)
         npt.assert_almost_equal(idf_doc[0], -0.09531018, decimal=5)
+
+    def test_tf(self):
+        t = Tools()
+        tf = t.tf(docs, vocab)
+        assert(tf[0] == 1)
