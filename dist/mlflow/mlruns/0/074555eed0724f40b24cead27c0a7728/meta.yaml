@@ -1,0 +1,13 @@
+artifact_uri: /Users/ram/Documents/moises/proyectos/dojo/dist/mlflow/mlruns/0/074555eed0724f40b24cead27c0a7728/artifacts
+end_time: 1528410125957
+entry_point_name: main
+experiment_id: 0
+name: Run 0
+run_uuid: 074555eed0724f40b24cead27c0a7728
+source_name: /Users/ram/Documents/moises/proyectos/dojo/dist/mlflow
+source_type: 3
+source_version: fe8afc7eee80e85e2517cb2a48ad7d7630ce69ad
+start_time: 1528410122862
+status: 3
+tags: []
+user_id: ram
