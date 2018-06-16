@@ -1,0 +1,16 @@
+version: "3.2"
+services:
+  haskell:
+    image: haskell:8.4.3
+    volumes:
+      - type: bind
+        source: ./src
+        target: /src
+    entrypoint:
+      - tail
+      - -f
+      - /var/log/faillog
+volumes:
+  .:
+
+# docker exec -ti haskell_haskell_1 bash
